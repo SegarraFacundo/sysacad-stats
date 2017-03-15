@@ -3,10 +3,10 @@ import Progress from './Progress'
 
 class StatsView extends Component {
   render () {
-    const { examenes } = this.props
+    const { estadoAcademico } = this.props
     return (
       <div>
-        <Progress examenes={examenes} />
+        <Progress estadoAcademico={estadoAcademico} />
       </div>
     )
   }
