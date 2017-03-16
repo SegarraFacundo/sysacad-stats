@@ -1,17 +1,37 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
+import { Table } from "semantic-ui-react";
+import Header from "./Header";
 
 class ExamenesListView extends Component {
-  render () {
-    console.log(this.props)
-    const { examenes } = this.props
+  render() {
+    const { examenes } = this.props;
     return (
       <div>
-        <ul>
-          {examenes.map((examen) => <li key={`${examen.codigo}-${examen.fecha}`}>{examen.materia}: {examen.nota}</li>)}
-        </ul>
+        <Header />
+        <Table celled>
+          <Table.Header>
+            <Table.Row>
+              <Table.HeaderCell>Código</Table.HeaderCell>
+              <Table.HeaderCell>Materia</Table.HeaderCell>
+              <Table.HeaderCell>Nota</Table.HeaderCell>
+              <Table.HeaderCell>Fecha</Table.HeaderCell>
+            </Table.Row>
+          </Table.Header>
+
+          <Table.Body>
+            {examenes.map(ex => (
+              <Table.Row>
+                <Table.Cell>{ ex.codigo }</Table.Cell>
+                <Table.Cell>{ ex.materia }</Table.Cell>
+                <Table.Cell>{ ex.nota }</Table.Cell>
+                <Table.Cell>{ ex.fecha }</Table.Cell>
+              </Table.Row>
+            ))}
+          </Table.Body>
+        </Table>
       </div>
-    )
+    );
   }
 }
 
-export default ExamenesListView
+export default ExamenesListView;
