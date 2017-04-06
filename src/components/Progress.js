@@ -2,9 +2,9 @@ import React, { Component } from "react";
 
 class Progress extends Component {
   render() {
-    const { estadoAcademico } = this.props;
-    const total = estadoAcademico.materias.length;
-    const aprobadas = estadoAcademico.materias.filter(
+    const { estado_academico } = this.props;
+    const total = estado_academico.materias.length;
+    const aprobadas = estado_academico.materias.filter(
       m => m.estado.estado === "aprobada"
     )
     .filter(m => !m.nombre.includes('(Elec.)'))

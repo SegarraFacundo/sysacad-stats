@@ -4,11 +4,11 @@ import Header from "./Header";
 
 class StatsView extends Component {
   render () {
-    const { estadoAcademico } = this.props
+    const { estado_academico } = this.props
     return (
       <div>
         <Header />
-        <Progress estadoAcademico={estadoAcademico} />
+        <Progress estado_academico={estado_academico} />
       </div>
     )
   }

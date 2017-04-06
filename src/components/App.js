@@ -4,21 +4,39 @@ import { Container } from "semantic-ui-react";
 import ExamenesListView from "./ExamenesListView";
 import StatsView from "./StatsView";
 import Login from "./Login";
+import { getData } from "../data";
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.renderConDatosCargados = this.renderConDatosCargados.bind(this);
+    this.state = {
+      data: null
+    };
+  }
+
+  componentDidMount() {
+    getData().then(data => {
+      this.setState({ data });
+    });
+  }
+
   render() {
-    const { examenes, estadoAcademico } = this.props;
+    if (this.state.data === null) {
+      return <div>Cargando datos</div>;
+    } else {
+      return this.renderConDatosCargados();
+    }
+  }
+
+  renderConDatosCargados() {
+    const { data: { examenes, estado_academico } } = this.state;
     return (
       <div>
         <Router>
           <div>
             <Container>
-              <Route
-                path="/login"
-                render={() => (
-                  <Login />
-                )}
-              />
+              <Route path="/login" render={() => <Login />} />
               <Route
                 path="/examenes"
                 render={props => <ExamenesListView examenes={examenes} />}
@@ -28,7 +46,7 @@ class App extends Component {
                 render={() => (
                   <StatsView
                     examenes={examenes}
-                    estadoAcademico={estadoAcademico}
+                    estado_academico={estado_academico}
                   />
                 )}
               />
