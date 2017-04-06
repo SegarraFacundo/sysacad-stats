@@ -1,3 +1,5 @@
+const url = 'http://127.0.0.1:5000/data'
+
 export const examenes = [
   {
     codigo: "123",
@@ -1039,14 +1041,16 @@ export const obligatorias = [
 ];
 
 export function getData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(
-      () =>
-        resolve({
-          estado_academico: estadoAcademico,
-          examenes: examenes
-        }),
-      3000
-    );
-  });
+  
+  return fetch( url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        legajo: '33412',
+        password: 'mandragoras'
+      })
+    }).then( (resp) => resp.json() )
+
 }

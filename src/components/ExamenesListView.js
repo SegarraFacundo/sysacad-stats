@@ -23,7 +23,7 @@ class ExamenesListView extends Component {
               <Table.Row>
                 <Table.Cell>{ ex.codigo }</Table.Cell>
                 <Table.Cell>{ ex.materia }</Table.Cell>
-                <Table.Cell>{ ex.nota }</Table.Cell>
+                <Table.Cell>{ ex.nota ? ex.nota : 'Aus.' }</Table.Cell>
                 <Table.Cell>{ ex.fecha }</Table.Cell>
               </Table.Row>
             ))}

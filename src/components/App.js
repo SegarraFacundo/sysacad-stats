@@ -17,6 +17,7 @@ class App extends Component {
 
   componentDidMount() {
     getData().then(data => {
+      console.log(data)
       this.setState({ data });
     });
   }
