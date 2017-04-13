@@ -1,17 +1,26 @@
 import React, { Component } from "react";
 import { Table } from "semantic-ui-react";
-import Header from "./Header";
 
-class ExamenesListView extends Component {
+export default class Examenes extends Component {
   render() {
+
     const { examenes } = this.props;
+
+    const content = examenes.map( (ex) => {
+      return (
+        <Table.Row key={ex.fecha} >
+          <Table.Cell>{ ex.materia }</Table.Cell>
+          <Table.Cell>{ ex.nota ? ex.nota : "Aus." }</Table.Cell>
+          <Table.Cell>{ ex.fecha }</Table.Cell>
+        </Table.Row>
+      )
+    })
+
     return (
       <div>
-        <Header />
         <Table celled>
           <Table.Header>
             <Table.Row>
-              <Table.HeaderCell>Código</Table.HeaderCell>
               <Table.HeaderCell>Materia</Table.HeaderCell>
               <Table.HeaderCell>Nota</Table.HeaderCell>
               <Table.HeaderCell>Fecha</Table.HeaderCell>
@@ -19,19 +28,10 @@ class ExamenesListView extends Component {
           </Table.Header>
 
           <Table.Body>
-            {examenes.map(ex => (
-              <Table.Row>
-                <Table.Cell>{ ex.codigo }</Table.Cell>
-                <Table.Cell>{ ex.materia }</Table.Cell>
-                <Table.Cell>{ ex.nota ? ex.nota : 'Aus.' }</Table.Cell>
-                <Table.Cell>{ ex.fecha }</Table.Cell>
-              </Table.Row>
-            ))}
+              { content }
           </Table.Body>
         </Table>
       </div>
     );
   }
 }
-
-export default ExamenesListView;
