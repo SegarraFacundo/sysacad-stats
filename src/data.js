@@ -1040,7 +1040,7 @@ export const obligatorias = [
   "Sistemas de Gestión"
 ];
 
-export function getData() {
+export default function getData() {
   
   return fetch( url, {
       method: 'POST',
@@ -1051,6 +1051,10 @@ export function getData() {
         legajo: '33412',
         password: 'mandragoras'
       })
-    }).then( (resp) => resp.json() )
+    }).then( resp => 
+      resp.ok ? resp.json() : new Error('fail')
+    )
+    .catch( err => 
+      false )
 
 }
